@@ -1,5 +1,12 @@
+from PyPDF2 import PdfReader
+from agents.parse_agent import extract_clauses_from_text
+from agents.simplify_agent import simplify_clause
+from agents.risk_agent import detect_risks
+from agents.draft_agent import generate_notice
 import streamlit as st
 from datetime import datetime
+from openai import OpenAI 
+
 
 # ----------------- PAGE CONFIG -----------------
 st.set_page_config(
@@ -160,54 +167,130 @@ st.markdown("A multi-agent assistant to help people understand legal documents i
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
 
 # ----------------- FILE UPLOAD -----------------
-st.subheader("📄 Upload a Legal PDF Document / قانونی دستاویز اپ لوڈ کریں")
-uploaded_file = st.file_uploader("Upload a legal Urdu PDF document for analysis / تجزیہ کے لیے اردو قانونی پی ڈی ایف اپ لوڈ کریں:", type=["pdf"])
+st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
+st.subheader("📄 Upload a Legal PDF Document (Urdu or English) / قانونی یا انگریزی پی ڈی ایف اپ لوڈ کریں")
+
+uploaded_file = st.file_uploader("Upload a typed PDF (not scanned image):", type=["pdf"])
 
 if uploaded_file:
-    st.success("✅ File uploaded successfully / فائل کامیابی سے اپ لوڈ ہو گئی۔")
-    if st.button("📤 Start Analysis / تجزیہ شروع کریں"):
-        st.info("🔄 Analyzing document with agents (coming soon) / ایجنٹس کے ساتھ دستاویز کا تجزیہ ہو رہا ہے۔")
+    st.info("🔄 Extracting text from PDF...")
+    pdf_reader = PdfReader(uploaded_file)
+    full_text = ""
+
+    for page in pdf_reader.pages:
+        page_text = page.extract_text()
+        if page_text:
+            full_text += page_text + "\n"
+
+    if full_text.strip():
+        st.success("✅ Text extracted successfully!")
+        
+        st.markdown("### 📝 Extracted Text (Editable)")
+        full_text = st.text_area("You can modify the extracted content below:", value=full_text, height=300)
+
+        clauses = extract_clauses_from_text(full_text)
+
+        if clauses:
+            selected_clause = st.selectbox("📌 Select a Clause to Analyze", clauses)
+
+            col1, col2, col3 = st.columns(3)
+
+            with col1:
+                if st.button("🧠 Simplify Clause"):
+                    simplified = simplify_clause(selected_clause)
+                    st.markdown("### 📘 Simplified Explanation")
+                    st.markdown(simplified)
+
+            with col2:
+                if st.button("⚠ Highlight Risk"):
+                    risks = detect_risks(selected_clause)
+                    st.markdown("### ⚖ Legal Risks Identified")
+                    st.markdown(risks)
+
+            with col3:
+                if st.button("📩 Draft Notice"):
+                    notice = generate_notice(selected_clause)
+                    st.markdown("### 📬 Generated Notice")
+                    st.markdown(notice)
+
+        else:
+            st.warning("⚠ No clear clauses found. Please upload a properly formatted legal document.")
+    else:
+        st.error("❌ No text extracted. PDF may be a scanned image. Please upload a typed (digital) PDF.")
+else:
+    st.info("📥 Please upload a PDF file to begin.")
 
 # ----------------- CHAT ASSISTANT -----------------
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
 st.subheader("💬 Ask Questions from Urdu Law / اردو قانون سے سوال پوچھیں")
 user_query = st.text_input("Type your legal question in Urdu / اپنا سوال اردو میں درج کریں:")
 if user_query:
-    st.info(f"🧠 Agent response for: '{user_query}'")
-    st.write("(This is where the LLM agent's answer will appear / یہاں AI ایجنٹ کا جواب ظاہر ہوگا)")
+    from openai import OpenAI
+    import os
+    from dotenv import load_dotenv
+    load_dotenv()
+    client = OpenAI(base_url=os.getenv("GROQ_BASE_URL"), api_key=os.getenv("GROQ_API_KEY"))
+    
+    response = client.chat.completions.create(
+        model="llama3-70b-8192",
+        messages=[
+            {"role": "system", "content": "You are a Pakistani legal assistant who replies in both English and Urdu."},
+            {"role": "user", "content": user_query}
+        ]
+    )
+    st.success(response.choices[0].message.content)
 
 # ----------------- SIMPLIFIER -----------------
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
 st.subheader("🔎 Simplify Legal Clause / قانونی شق کو آسان بنائیں")
-st.text_area("Paste a legal clause (Urdu or English) / اردو یا انگریزی میں قانونی شق درج کریں:")
-if st.button("🧾 Simplify it / اسے آسان کریں"):
-    st.success("Here is the simplified version (AI-powered coming soon) / آسان کیا گیا متن یہاں ہوگا۔")
+manual_clause = st.text_area("Paste a legal clause (Urdu or English) / اردو یا انگریزی میں قانونی شق درج کریں:")
+
+if st.button("🧾 Simplify it / اسے آسان کریں") and manual_clause:
+    simplified = simplify_clause(manual_clause)
+    st.markdown("### 📘 Simplified Explanation / آسان وضاحت")
+    st.markdown(simplified)
 
 # ----------------- DRAFT NOTICE -----------------
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
 st.subheader("📬 Draft a Legal Notice / قانونی نوٹس تیار کریں")
-st.text_input("Enter recipient name (e.g. Mr. XYZ) / موصول کنندہ کا نام درج کریں:")
-st.text_area("Reason for notice (e.g. tenant must vacate) / نوٹس کی وجہ:")
-if st.button("📄 Generate Notice / نوٹس تیار کریں"):
-    st.success("Your drafted legal notice will appear here / آپ کا تیار کردہ نوٹس یہاں ظاہر ہوگا۔")
+recipient = st.text_input("Enter recipient name (e.g. Mr. XYZ) / موصول کنندہ کا نام درج کریں:")
+reason_clause = st.text_area("Reason for notice (e.g. tenant must vacate) / نوٹس کی وجہ:")
+
+if st.button("📄 Generate Notice / نوٹس تیار کریں") and reason_clause:
+    notice_text = generate_notice(reason_clause, recipient)
+    st.markdown("### 📨 Generated Legal Notice / تیار کردہ قانونی نوٹس")
+    st.markdown(notice_text)
 
 # ----------------- RISK HIGHLIGHT -----------------
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
 st.subheader("⚠ Highlight Legal Risks / قانونی خطرات کی نشاندہی کریں")
-st.text_area("Paste clause to analyze for potential risks / خطرات کے لیے شق درج کریں:")
-if st.button("⚠ Analyze Risks / خطرات دیکھیں"):
-    st.warning("This is a preview of potential legal risks / ممکنہ قانونی خطرات کی پیشگی معلومات۔")
+risk_clause = st.text_area("Paste clause to analyze for potential risks / خطرات کے لیے شق درج کریں:")
+
+if st.button("⚠ Analyze Risks / خطرات دیکھیں") and risk_clause:
+    risks = detect_risks(risk_clause)
+    st.markdown("### ⚖ Detected Legal Risks / دریافت شدہ قانونی خطرات")
+    st.markdown(risks)
 
 # ----------------- LAW SUMMARY SECTION -----------------
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
 st.subheader("📚 Law Summary Generator / قانون کا خلاصہ بنائیں")
 st.text_input("Enter Law Title or Topic / قانون کا عنوان یا موضوع درج کریں:")
-if st.button("📘 Summarize Law / خلاصہ تیار کریں"):
-    st.success("Here is the summarized version of the law / قانون کا خلاصہ یہاں ظاہر ہوگا۔")
+if st.button("📘 Summarize Law / خلاصہ تیار کریں") and summ_topic:
+    summary_prompt = f"Summarize the Pakistani law or topic: {summ_topic} in plain Urdu and English."
+    summary_response = client.chat.completions.create(
+        model="llama3-70b-8192",
+        messages=[{"role": "user", "content": summary_prompt}]
+    )
+    st.success(summary_response.choices[0].message.content)
 
 # ----------------- TERM EXPLAINER SECTION -----------------
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
 st.subheader("📖 Legal Term Explainer / قانونی اصطلاح کی وضاحت کریں")
 st.text_input("Enter legal term (e.g. Khula, Succession) / قانونی اصطلاح درج کریں:")
-if st.button("🧾 Explain Term / وضاحت کریں"):
-    st.info("This is where the explanation will appear / یہاں اصطلاح کی وضاحت ہوگی۔")
+if st.button("🧾 Explain Term / وضاحت کریں") and term:
+    term_prompt = f"Explain the legal term '{term}' in Urdu and English with an example."
+    term_response = client.chat.completions.create(
+        model="llama3-70b-8192",
+        messages=[{"role": "user", "content": term_prompt}]
+    )
+    st.success(term_response.choices[0].message.content)
