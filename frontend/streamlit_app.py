@@ -3,7 +3,7 @@ from datetime import datetime
 
 # ----------------- PAGE CONFIG -----------------
 st.set_page_config(
-    page_title="📘 Urdu Legal Help Assistant",
+    page_title="Legal AI Help Assistant",
     layout="wide",
     page_icon="📘",
 )
@@ -13,6 +13,56 @@ st.markdown(r"""
     <style>
         body {
             background-color: #0f172a;
+        }
+        [data-testid="stAppViewContainer"] {
+            background-color: #0f172a;
+        }
+        [data-testid="stHeader"] {
+            background-color: #0f172a;
+        }
+        html , body , [data-testid="stAppViewContainer"] , [data-testid="stHeader"] {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+        .highlight-box {
+            background-color: #1e293b;
+            color: #f1f5f9;
+        }
+        .stTextInput input ,
+        .stTextArea textarea {
+            background-color: #1e293b;  
+            color: #f1f5f9;
+            border: 1px solid #334155;
+        }
+        .stTextInput input::placeholder,
+        .stTextArea textarea::placeholder {
+            color: #cbd5e1;
+        }
+        .markdown-text-container , .markdown-text-container * {
+            color: #f1f5f9;
+        }
+        label , span , small {
+            color: #f1f5f9;
+        }
+        div[class*="stMarkdown"] p {
+            color: #f1f5f9;
+        }
+        .stButton > button {
+            background-color: #facc15;
+            color: #0f172a;
+        }
+        .stAlert {
+            background-color: #334155; 
+            color: #f8fafc;
+        }
+        [dat-testid="stMarkdownContainer"] p , 
+        .markdown-text-container p ,
+        div[class*="stMarkdown"] p 
+        section.main p,
+        p {
+            color: #f1f5f9;
+            font-size: 1.05em;
+            font-weight: 400;
         }
         .main-title {
             font-size: 2.5em;
@@ -92,22 +142,21 @@ st.markdown(r"""
 
 # ----------------- SIDEBAR -----------------
 with st.sidebar:
-    st.image("https://upload.wikimedia.org/wikipedia/commons/3/32/Pakistan_Flag.png", width=120)
-    st.markdown('<div class="sidebar-title">📘 Urdu Legal Assistant</div>', unsafe_allow_html=True)
-    st.markdown("AI Assistant to understand Pakistani laws in Urdu.")
+    st.markdown('<div class="sidebar-title">📘 Legal AI Help Assistant</div>', unsafe_allow_html=True)
+    st.markdown("AI Help Assistant to understand laws.")
     st.markdown("---")
     st.markdown('<div class="sidebar-title">📌 Project Info</div>', unsafe_allow_html=True)
     st.markdown(f"""
     <div class="sidebar-section">
-    <strong>Created by:</strong> Hassaan's Team<br>
+    <strong>Created by:</strong> Team Binary Ninjas<br>
     <strong>Date:</strong> {datetime.today().strftime('%B %d, %Y')}<br>
     <strong>Tech:</strong> Streamlit, Groq, Coral, ChromaDB
     </div>
     """, unsafe_allow_html=True)
 
 # ----------------- HEADER -----------------
-st.markdown('<div class="main-title">🧠 Urdu Legal Help Agent 🇵🇰</div>', unsafe_allow_html=True)
-st.markdown("A multi-agent assistant to help people understand legal documents in Urdu and English.")
+st.markdown('<div class="main-title">🧠 Legal AI Help Agent</div>', unsafe_allow_html=True)
+st.markdown("A multi-agent assistant to help people understand legal documents in English and Urdu.")
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
 
 # ----------------- FILE UPLOAD -----------------
