@@ -8,3 +8,4 @@ __pycache__/
 # ✅ Ignore local environment secrets
 .env
 
+voice/
