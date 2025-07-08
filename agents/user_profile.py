@@ -1,3 +1,5 @@
+# agents/user_profile.py
+
 import os
 import json
 from datetime import datetime
@@ -39,7 +41,7 @@ def save_user_query(user_id, clause, explanation, risk=None, notice=None):
     return True
 
 
-# ✅ Sample test
+# Sample test
 if __name__ == "__main__":
     save_user_query(
         user_id="user123",

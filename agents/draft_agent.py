@@ -39,6 +39,6 @@ Output:
 
 
 # Optional test run
-if _name_ == "_main_":
+if __name__ == "__main__":
     clause = "شق 7: کرایہ دار کو 30 دن کے اندر مکان خالی کرنا ہوگا ورنہ قانونی کارروائی ہو سکتی ہے۔"
     print(generate_notice(clause, recipient="کرایہ دار"))

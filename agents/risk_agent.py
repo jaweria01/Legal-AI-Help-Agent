@@ -38,6 +38,6 @@ Respond in this format:
 
 
 # Run standalone for testing
-if _name_ == "_main_":
+if __name__ == "__main__":
     clause = "شق 5: مالک مکان کرایہ بغیر اطلاع کے کسی بھی وقت بڑھا سکتا ہے۔"
     print(detect_risks(clause))

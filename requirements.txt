@@ -1,0 +1,12 @@
+streamlit
+python-dotenv
+openai
+langchain
+langchain-core
+langchain-community
+chromadb
+tiktoken
+PyMuPDF
+pypdf
+pdfminer.six
+sentence-transformers

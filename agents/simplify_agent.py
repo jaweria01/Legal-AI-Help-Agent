@@ -38,6 +38,6 @@ Clause:
 
 
 # If you want to test it standalone:
-if _name_ == "_main_":
+if __name__ == "__main__":
     clause = "شق 3: مالک مکان کرایہ دار کو کم از کم 30 دن پہلے تحریری نوٹس دے گا۔"
     print(simplify_clause(clause))

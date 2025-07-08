@@ -1,35 +1,36 @@
 # agents/parse_agent.py
 
 import re
-from retriever.retriever import embed_query, search_similar_chunks
-from agents.user_profile import save_user_query
 
 def extract_clauses_from_text(text):
-    # ... your existing splitting logic ...
+    """
+    Takes full legal text and returns a list of clauses based on patterns like 'شق 1:', 'شق 2:' etc.
+    """
+    # Urdu pattern for شق
+    pattern = r"(شق[\s\d:]+)"
+
+    # Split using regex
+    parts = re.split(pattern, text)
+
+    # Rebuild clean clause blocks
+    clauses = []
+    for i in range(1, len(parts), 2):
+        heading = parts[i].strip()
+        body = parts[i + 1].strip() if (i + 1) < len(parts) else ""
+        full_clause = f"{heading} {body}".strip()
+        if len(full_clause) > 20:
+            clauses.append(full_clause)
+
     return clauses
 
-def handle_user_question(user_input):
-    # NEW: Full agent pipeline
-    embedding = embed_query(user_input)
-    best_chunks = search_similar_chunks(embedding)
 
-    best_clause = best_chunks[0] if best_chunks else "❌ کوئی متعلقہ شق نہیں ملی۔"
-
-    simplified = best_clause
-    risk = None
-    notice = None
-
-    save_user_query(
-        user_id="user123",
-        clause=best_clause,
-        explanation=simplified,
-        risk=risk,
-        notice=notice
-    )
-
-    return best_clause
-
+# Test this code separately
 if __name__ == "__main__":
-    # ✅ Test the pipeline
-    answer = handle_user_question("کرایہ داری قانون دفعہ پانچ کیا ہے؟")
-    print("🧠 Agent Response:", answer)
+    sample_text = """
+    شق 1: کرایہ دار کو ہر ماہ کی 5 تاریخ تک کرایہ ادا کرنا ہوگا۔
+    شق 2: مکان خالی کرنے کے لیے 30 دن کا نوٹس دینا لازمی ہے۔
+    شق 3: مالک مکان بغیر اطلاع کے کرایہ نہیں بڑھا سکتا۔
+    """
+    extracted = extract_clauses_from_text(sample_text)
+    for c in extracted:
+        print("➡️", c)
