@@ -99,8 +99,12 @@ We built a multi-agent AI system powered by Groq & LangChain that:
 
 ## 👥 Team: Binary Ninjas
 
-- Muhammad Hassaan (UI, Integration, Coordination)  
-- [Other Members] – Backend, Retrieval, Agent Design
+- Muhammad Hassaan — Team Leader / Full Stack developer
+- Jaweria Siddique — Data Engineer
+- Muhammad Haris — Retriever Specialist
+- Qutaiba Ansari — LLM Agent Engineer
+- Gohar Fatima - Frontend developer
+- Saman Fatima— Pitch & Testing
 
 ---
 
