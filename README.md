@@ -44,19 +44,27 @@ We built a multi-agent AI system powered by Groq & LangChain that:
 
 /legal-ecom-agent
 ├── agents/
+
 │ ├── simplify_agent.py
 │ ├── draft_agent.py
 │ ├── risk_agent.py
 │ └── user_profile.py
+
 ├── retriever/
 │ ├── embedder.py
 │ └── retriever.py
+
 ├── frontend/
 │ └── streamlit_app.py
+
 ├── data/ ← Cleaned Urdu law texts
+
 ├── tests/ ← test_agents.py, test_retriever.py
+
 ├── .env ← Stores GROQ_API_KEY
+
 ├── requirements.txt
+
 ├── README.md
 
 
@@ -87,11 +95,13 @@ We built a multi-agent AI system powered by Groq & LangChain that:
 
 ---
 
+---
 ## 📚 Sample Laws Included
 
 1️⃣ **Rent Act (کرایہ داری قانون)**  
 Helps tenants and landlords understand rent rules, notice periods, and eviction procedures.  
-کرایہ دار اور مالک مکان کو کرایہ، نوٹس پیریڈ اور مکان خالی کرنے کے طریقے سمجھاتا ہے
+کرایہ دار اور مالک مکان کو کرایہ، نوٹس پیریڈ اور مکان خالی کرنے کے طریقے سمجھاتا ہے۔
+
 ---
 
 2️⃣ **Contract Act (قانونِ معاہدہ)**  
