@@ -89,11 +89,14 @@ We built a multi-agent AI system powered by Groq & LangChain that:
 
 ## 📚 Sample Laws Included
 
-- دستور پاکستان 1973  
-- قانون شہادت 1984  
-- تعزیرات پاکستان  
-- انسداد دہشتگردی  
-- قانونِ وراثت، نکاح، خلع، اجرت، اور مزید 50+ اردو قوانین
+1️⃣ **Rent Act (کرایہ داری قانون)**  
+Helps tenants and landlords understand rent rules, notice periods, and eviction procedures.  
+کرایہ دار اور مالک مکان کو کرایہ، نوٹس پیریڈ اور مکان خالی کرنے کے طریقے سمجھاتا ہے
+---
+
+2️⃣ **Contract Act (قانونِ معاہدہ)**  
+Explains how agreements are formed, rights and duties of parties, and breach consequences.  
+معاہدہ بننے کے اصول، فریقین کے حقوق و ذمہ داریاں اور خلاف ورزی کی صورت کو واضح کرتا ہے۔
 
 ---
 
