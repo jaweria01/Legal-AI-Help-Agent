@@ -1,5 +1,5 @@
-# 🧠 Legal E-commerce AI Agent
-An agentic Urdu+English AI system to help users — especially in Pakistan — understand legal documents, simplify complex clauses, highlight risks, and draft notices.
+# 🧠 Legal AI Help Agent
+An agentic English + Urdu AI system to help users — especially in Pakistan — understand legal documents, simplify complex clauses, highlight risks, and draft notices.
 
 Built for the [RAISE Your Hack 2025](https://lablab.ai) Hackathon — submitted under the Prosus Track.
 
@@ -15,15 +15,15 @@ Millions in Pakistan and other Urdu-speaking countries struggle to understand le
 
 ---
 
-## 💡 Solution: Legal E-commerce AI Agent 
+## 💡 Solution: Legal AI Help Agent 
 We built a multi-agent AI system powered by Groq & LangChain that:
 
 ✅ Extracts important clauses from legal Urdu PDFs  
-✅ Explains them in plain Urdu + English  
+✅ Explains them in plain English + Urdu
 ✅ Highlights risks in contracts  
 ✅ Drafts legal notices automatically  
 ✅ Lets you ask legal questions in Urdu  
-✅ Supports 50+ Pakistani federal laws
+✅ Supports Pakistani federal laws
 
 ---
 
@@ -34,7 +34,7 @@ We built a multi-agent AI system powered by Groq & LangChain that:
 | 💻 Frontend    | Streamlit (responsive, Urdu+English dual UI)    |
 | 🧠 LLM         | LLaMA-3 via Groq API and Groq                          |
 | 🧱 Agents       | Coral Protocol + LangChain + Multi-Agent Architecture            |
-| 📄 Data        |  Federal Laws in PDF (Urdu + English)        |
+| 📄 Data        |  Federal Laws in PDF (English + Urdu)        |
 | 🔎 Retrieval   | ChromaDB + Groq Embedding Model                 |
 | 🔐 Secrets     | .env via python-dotenv                          |
 
@@ -42,7 +42,7 @@ We built a multi-agent AI system powered by Groq & LangChain that:
 
 ## 🗂️ Folder Structure
 
-/legal-ecom-agent
+/Legal-AI- Help-Agent
 ├── agents/
 
 │ ├── simplify_agent.py
@@ -59,7 +59,7 @@ We built a multi-agent AI system powered by Groq & LangChain that:
 
 ├── data/ ← Cleaned Urdu law texts
 
-├── tests/ ← test_agents.py, test_retriever.py
+├── tests/ ← test_agents.py, test_retriever.py, test_groq.py
 
 ├── .env ← Stores GROQ_API_KEY
 
@@ -124,8 +124,8 @@ Explains how agreements are formed, rights and duties of parties, and breach con
 ## 📦 Deployment
 
 - Groq API: https://console.groq.com  
-- Streamlit App: Local or Hugging Face (optional)  
-- Hugging Face Demo UI (optional): [add link]
+- Deployed on Hugging Face
+- Hugging Face Demo : [https://huggingface.co/spaces/JARVISXIRONMAN/Legal-AI-Help-Assistant]
 
 ---
 
@@ -138,7 +138,7 @@ MIT License — for educational and nonprofit use.
 ## 🚀 Bonus Features (if implemented)
 
 - PDF Export of results  
-- Urdu/English chat assistant with memory  
+- English/Urdu chat assistant with memory  
 - Saving user profiles as Knowledge Graphs
 
 ---
