@@ -19,7 +19,7 @@ client = OpenAI(
 
 # ----------------- PAGE CONFIG -----------------
 st.set_page_config(
-    page_title="Legal AI Help Assistant",
+    page_title="Legal AI Help Agent",
     layout="wide",
     page_icon="📘",
 )
@@ -181,18 +181,18 @@ with st.sidebar:
     <div class="sidebar-section">
     <strong>Created by:</strong> Team Binary Ninjas<br>
     <strong>Date:</strong> {datetime.today().strftime('%B %d, %Y')}<br>
-    <strong>Tech:</strong> Streamlit, Groq, Coral Protocol, ChromaDB.
+    <strong>Tech:</strong> Streamlit, Groq, LLaMA, LangChain, ChromaDB and more.
     </div>
     """, unsafe_allow_html=True)
 
 # ----------------- HEADER -----------------
-st.markdown('<div class="main-title">🧠 Legal E-commerce AI Agent</div>', unsafe_allow_html=True)
+st.markdown('<div class="main-title">🧠 Legal AI Help Agent</div>', unsafe_allow_html=True)
 st.markdown("A multi-agent assistant to help people understand legal documents in English and Urdu.")
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
 
 # ----------------- FILE UPLOAD -----------------
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
-st.subheader("📄 Upload a Legal PDF Document (Urdu or English) / قانونی یا انگریزی پی ڈی ایف اپ لوڈ کریں")
+st.subheader("📄 Upload a Legal PDF Document (English or Urdu) / قانونی پی ڈی ایف دستاویز اپ لوڈ کریں (انگریزی یا اردو)")
 
 uploaded_file = st.file_uploader("Upload a typed PDF (not scanned image):", type=["pdf"])
 
@@ -246,9 +246,9 @@ else:
 
 # ----------------- ASK QUESTION SECTION -----------------
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
-st.subheader("💬 Ask Questions from Law / اردو قانون سے سوال پوچھیں")
+st.subheader("💬 Ask Questions related to the Law / قانون سے متعلق سوالات پوچھیں۔")
 
-user_query = st.text_input("Type your legal question / اپنا سوال اردو میں درج کریں:")
+user_query = st.text_input("Type your legal question /  اپنا قانونی سوال درج کریں :")
 
 # Initialize session state for response
 if "question_response" not in st.session_state:
@@ -287,7 +287,7 @@ if st.session_state.question_response:
 st.markdown("<hr class='section-divider'>", unsafe_allow_html=True)
 st.subheader("🔎 Simplify Legal Clause / قانونی شق کو آسان بنائیں")
 
-clause_text = st.text_area("Paste a legal clause (Urdu or English) / اردو یا انگریزی میں قانونی شق درج کریں:")
+clause_text = st.text_area("Paste a legal clause (English or Urdu) / انگریزی یا اردو میں قانونی شق درج کریں:")
 
 # Initialize session state
 if "simplified_output" not in st.session_state:
@@ -459,3 +459,4 @@ if st.button("🧾 Explain Term / وضاحت کریں"):
 if st.session_state.term_explainer_output:
     st.markdown("🧾 Explanation Output / وضاحت:")
     st.success(st.session_state.term_explainer_output)
+
