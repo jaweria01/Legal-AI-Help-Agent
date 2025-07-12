@@ -1,11 +1,23 @@
-# ✅ Ignore virtual environment
-venv/
-
-# ✅ Ignore Python cache
-__pycache__/
+# Ignore compiled Python files
+_pycache_/
 *.pyc
 
-# ✅ Ignore local environment secrets
+# Ignore environment secrets
 .env
 
-voice/
+# Ignore ChromaDB & vector data
+chroma_db/
+*.sqlite3
+
+# Ignore user-specific data
+user_profiles/*.json
+
+# Ignore frontend session files or cache
+frontend/_pycache_/
+*.log
+
+# Ignore OS junk
+.DS_Store
+
+# Ignore test PDFs
+*.pdf
