@@ -1,5 +1,5 @@
 # Ignore compiled Python files
-_pycache_/
+__pycache__/
 *.pyc
 
 # Ignore environment secrets
@@ -7,7 +7,8 @@ _pycache_/
 
 # Ignore ChromaDB & vector data
 chroma_db/
-*.sqlite3
+retriever/chroma_db/
+
 
 # Ignore user-specific data
 user_profiles/*.json
@@ -21,3 +22,6 @@ frontend/_pycache_/
 
 # Ignore test PDFs
 *.pdf
+
+# SQLite DB
+*.sqlite3
