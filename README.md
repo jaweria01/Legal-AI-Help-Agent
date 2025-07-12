@@ -125,7 +125,7 @@ Explains how agreements are formed, rights and duties of parties, and breach con
 
 - Groq API: https://console.groq.com  
 - Deployed on Hugging Face
-- Hugging Face Demo : [https://huggingface.co/spaces/JARVISXIRONMAN/Legal-AI-Help-Assistant]
+- Hugging Face Demo : [https://huggingface.co/spaces/JARVISXIRONMAN/Legal-AI-Help-Agent]
 
 ---
 
