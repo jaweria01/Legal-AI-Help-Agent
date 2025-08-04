@@ -1,7 +1,8 @@
 # 🧠 Legal AI Help Agent
 An agentic English + Urdu AI system to help users — especially in Pakistan — understand legal documents, simplify complex clauses, highlight risks, and draft notices.
 
-Built for the [RAISE Your Hack 2025](https://lablab.ai) Hackathon — submitted under the Prosus Track.
+
+Built for the [RAISE Your Hack 2025](https://lablab.ai/event/raise-your-hack) Hackathon — submitted under the Prosus Track.
 
 ---
 
