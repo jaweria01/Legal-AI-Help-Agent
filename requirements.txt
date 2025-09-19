@@ -12,3 +12,4 @@ pdfminer.six
 sentence-transformers
 PyPDF2
 langchain-openai
+groq

@@ -1,3 +1,12 @@
+---
+title: Legal AI Help Agent
+emoji: ⚖️
+sdk: streamlit
+sdk_version: 1.31.0
+app_file: frontend/streamlit_app.py
+pinned: false
+---
+
 # 🧠 Legal AI Help Agent
 An agentic English + Urdu AI system to help users — especially in Pakistan — understand legal documents, simplify complex clauses, highlight risks, and draft notices.
 
@@ -145,3 +154,6 @@ MIT License — for educational and nonprofit use.
 ---
 
 👨‍⚖️ Built by Binary Ninjas for Pakistan 🇵🇰 and all communities needing legal clarity.
+
+
+
