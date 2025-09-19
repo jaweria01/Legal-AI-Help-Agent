@@ -15,7 +15,7 @@ def test_simplify_agent_llm_response():
     prompt = f"Simplify this clause in Urdu and English: {clause}"
 
     response = client.chat.completions.create(
-        model="llama3-70b-8192",
+        model="llama-3.3-70b-versatile",
         messages=[{"role": "user", "content": prompt}]
     )
     answer = response.choices[0].message.content
@@ -28,7 +28,7 @@ def test_notice_drafting_llm_response():
     prompt = f"Draft a legal notice in Urdu and English for {recipient} due to: {reason}"
 
     response = client.chat.completions.create(
-        model="llama3-70b-8192",
+        model="llama-3.3-70b-versatile",
         messages=[{"role": "user", "content": prompt}]
     )
     answer = response.choices[0].message.content

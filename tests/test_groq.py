@@ -11,7 +11,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="llama3-70b-8192",
+    model="llama-3.3-70b-versatile",
     messages=[
         {"role": "user", "content": "قانون کی یہ شق کیا کہتی ہے: کرایہ دار کو 30 دن میں مکان خالی کرنا ہوگا؟"}
     ],

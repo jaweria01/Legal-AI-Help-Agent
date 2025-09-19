@@ -342,7 +342,7 @@ if st.button("📄 Generate Notice / نوٹس تیار کریں"):
 
         try:
             response = client.chat.completions.create(
-                model="llama3-70b-8192",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}]
             )
             st.session_state.drafted_notice_output = response.choices[0].message.content.strip()
@@ -377,7 +377,7 @@ if st.button("⚠ Analyze Risks / خطرات دیکھیں"):
 
         try:
             response = client.chat.completions.create(
-                model="llama3-70b-8192",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}]
             )
             st.session_state.risk_output = response.choices[0].message.content.strip()
@@ -412,7 +412,7 @@ if st.button("📘 Summarize Law / خلاصہ تیار کریں"):
 
         try:
             response = client.chat.completions.create(
-                model="llama3-70b-8192",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}]
             )
             st.session_state.law_summary_output = response.choices[0].message.content.strip()
@@ -447,7 +447,7 @@ if st.button("🧾 Explain Term / وضاحت کریں"):
 
         try:
             response = client.chat.completions.create(
-                model="llama3-70b-8192",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}]
             )
             st.session_state.term_explainer_output = response.choices[0].message.content.strip()
