@@ -3,7 +3,7 @@ title: Legal AI Help Agent
 emoji: ⚖️
 sdk: streamlit
 sdk_version: 1.31.0
-app_file: frontend/streamlit_app.py
+app_file: frontend/app.py
 pinned: false
 ---
 
