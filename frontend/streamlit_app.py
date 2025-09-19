@@ -267,7 +267,7 @@ if st.button("🔍 Get Answer / جواب حاصل کریں"):
 
         try:
             response = client.chat.completions.create(
-                model="llama3-70b-8192",
+                model="llama-3.3-70b-versatile",
                 messages=[
                     {"role": "user", "content": prompt}
                 ]
@@ -305,7 +305,7 @@ if st.button("🧾 Simplify it / اسے آسان کریں"):
 
         try:
             response = client.chat.completions.create(
-                model="llama3-70b-8192",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}]
             )
             st.session_state.simplified_output = response.choices[0].message.content.strip()
